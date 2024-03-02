@@ -7,7 +7,9 @@ class RootScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-      body: Placeholder(),
+      body: ListView(
+        children: [],
+      ),
     );
   }
 }
