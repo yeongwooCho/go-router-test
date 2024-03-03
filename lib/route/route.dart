@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:go_router_theory/screens/10_transition_screen_1.dart';
+import 'package:go_router_theory/screens/10_transition_screen_2.dart';
 import 'package:go_router_theory/screens/1_basic_screen.dart';
 import 'package:go_router_theory/screens/2_named_screen.dart';
 import 'package:go_router_theory/screens/3_push_screen.dart';
@@ -138,6 +141,34 @@ final router = GoRouter(
                 }
                 return null;
               },
+            ),
+          ],
+        ),
+        GoRoute(
+          path: 'transition',
+          builder: (context, state) => TransitionScreenOne(),
+          routes: [
+            GoRoute(
+              path: 'detail',
+              pageBuilder: (context, state) => CustomTransitionPage(
+                child: TransitionScreenTwo(),
+                transitionDuration: Duration(seconds: 3),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  return RotationTransition(
+                    turns: animation,
+                    child: child,
+                  );
+                  // return FadeTransition(
+                  //   opacity: animation,
+                  //   child: child,
+                  // );
+                  // return ScaleTransition(
+                  //   scale: animation,
+                  //   child: child,
+                  // );
+                },
+              ),
             ),
           ],
         ),
